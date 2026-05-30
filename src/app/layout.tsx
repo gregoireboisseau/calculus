@@ -7,7 +7,7 @@ import './globals.css';
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://calculus.netlify.app'),
+  metadataBase: new URL('https://calculus-game.netlify.app'),
   title: {
     template: '%s · Calculus',
     default: 'Calculus',
