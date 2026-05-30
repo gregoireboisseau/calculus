@@ -11,7 +11,7 @@
 [![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8?logo=pwa)](https://web.dev/progressive-web-apps/)
 [![i18n](https://img.shields.io/badge/i18n-FR%20%7C%20EN-blue)](#)
 
-[🎮 Jouer · Play](https://calculus.netlify.app) · [🇫🇷 Français](#français) · [🇬🇧 English](#english)
+[🎮 Jouer · Play](https://calculus-game.netlify.app) · [🇫🇷 Français](#français) · [🇬🇧 English](#english)
 
 </div>
 
