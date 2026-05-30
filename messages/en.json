@@ -1,0 +1,36 @@
+{
+  "game": {
+    "title": "Calculus",
+    "play": "Play",
+    "timeout": "Time's up",
+    "exact": "Exact!",
+    "off": "Off by: {ecart}",
+    "score": "Score",
+    "resultLine": "result {result} · target {target}",
+    "leaderboardTitle": "Leaderboard",
+    "loading": "Loading…",
+    "noScores": "No scores for this day.",
+    "today": "Today",
+    "colPlayer": "Player",
+    "colDuration": "Time",
+    "colGap": "Gap",
+    "timeLabel": "Time",
+    "targetLabel": "Target",
+    "resultHint": "= submit  |  STO store",
+    "alreadyPlayedTitle": "Already played today",
+    "yourScoreWith": "Your score — {pseudo}",
+    "yourPseudo": "Your name",
+    "targetEcart": "target {target} · off by {ecart}",
+    "rules": {
+      "title": "Rules",
+      "description": "Reach the target number in 100 seconds using the 6 numbers and operations + − × ÷."
+    }
+  },
+  "legal": {
+    "link": "Legal notice",
+    "title": "Legal notice",
+    "hosting": "Hosting",
+    "developer": "Developed by",
+    "close": "Close"
+  }
+}

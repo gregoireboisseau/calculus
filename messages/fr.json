@@ -1,0 +1,36 @@
+{
+  "game": {
+    "title": "Calculus",
+    "play": "Jouer",
+    "timeout": "Temps écoulé",
+    "exact": "Exact !",
+    "off": "Écart : {ecart}",
+    "score": "Score",
+    "resultLine": "résultat {result} · cible {target}",
+    "leaderboardTitle": "Classement",
+    "loading": "Chargement…",
+    "noScores": "Aucun score pour ce jour.",
+    "today": "Aujourd'hui",
+    "colPlayer": "Joueur",
+    "colDuration": "Durée",
+    "colGap": "Écart",
+    "timeLabel": "Temps",
+    "targetLabel": "Cible",
+    "resultHint": "= valider  |  STO mémoriser",
+    "alreadyPlayedTitle": "Déjà joué aujourd'hui",
+    "yourScoreWith": "Votre score — {pseudo}",
+    "yourPseudo": "Votre pseudo",
+    "targetEcart": "cible {target} · écart {ecart}",
+    "rules": {
+      "title": "Règles",
+      "description": "Atteignez le nombre cible en 100 secondes en utilisant les 6 nombres et les opérations + − × ÷."
+    }
+  },
+  "legal": {
+    "link": "Mentions légales",
+    "title": "Mentions légales",
+    "hosting": "Hébergement",
+    "developer": "Développé par",
+    "close": "Fermer"
+  }
+}

@@ -1,26 +1,281 @@
 @import "tailwindcss";
+@source "../";
+
+@font-face {
+  font-family: 'DSEG7Classic';
+  src: url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/npm/dseg@0.46.0/fonts/DSEG7-Classic/DSEG7Classic-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Theme tokens ─────────────────────────────────────────────────────────── */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Casing */
+  --calc-body: #cec8b6;
+  --calc-edge: #aaa490;
+  --calc-hi:   #e4ded0;
+  --calc-lo:   #9a9484;
+
+  /* LCD */
+  --lcd-bg:       #9ab888;
+  --lcd-active:   #1c3010;
+  --lcd-inactive: #80a870;
+  --lcd-bezel:    #1a201a;
+  --lcd-glow:     rgba(20, 60, 20, 0);
+
+  /* Number buttons */
+  --btn-n-face: #4a4a4a;
+  --btn-n-hi:   #636363;
+  --btn-n-lo:   #282828;
+  --btn-n-text: #d8d8d8;
+
+  /* Operator buttons */
+  --btn-o-face: #2d5030;
+  --btn-o-hi:   #3d6a40;
+  --btn-o-lo:   #152415;
+  --btn-o-text: #9af09a;
+
+  /* Equal button */
+  --btn-e-face: #1a3e88;
+  --btn-e-hi:   #2a54b0;
+  --btn-e-lo:   #0c1e44;
+  --btn-e-text: #c8dcff;
+
+  /* Del / Reset buttons */
+  --btn-d-face: #7a2010;
+  --btn-d-hi:   #9a3018;
+  --btn-d-lo:   #3c0e08;
+  --btn-d-text: #ffccaa;
+
+  /* Progress bar */
+  --prog-ok:  #3a8a3a;
+  --prog-bad: #cc3300;
+
+  /* Misc */
+  --text-label: #6a6050;
+  --text-brand: #928270;
+  --bg-page:    #aca898;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --calc-body: #202020;
+  --calc-edge: #101010;
+  --calc-hi:   #2e2e2e;
+  --calc-lo:   #080808;
+
+  --lcd-bg:       #040c04;
+  --lcd-active:   #00ff41;
+  --lcd-inactive: #052a0e;
+  --lcd-bezel:    #000000;
+  --lcd-glow:     rgba(0, 255, 65, 0.3);
+
+  --btn-n-face: #2e2e2e;
+  --btn-n-hi:   #3c3c3c;
+  --btn-n-lo:   #121212;
+  --btn-n-text: #b8b8b8;
+
+  --btn-o-face: #143414;
+  --btn-o-hi:   #1c481c;
+  --btn-o-lo:   #080e08;
+  --btn-o-text: #00ff41;
+
+  --btn-e-face: #0a1e44;
+  --btn-e-hi:   #0e2858;
+  --btn-e-lo:   #040c1e;
+  --btn-e-text: #6699ff;
+
+  --btn-d-face: #3c100a;
+  --btn-d-hi:   #4e160c;
+  --btn-d-lo:   #180604;
+  --btn-d-text: #ff7755;
+
+  --prog-ok:  #00cc33;
+  --prog-bad: #ff3300;
+
+  --text-label: #404040;
+  --text-brand: #2c2c28;
+  --bg-page:    #0c0c0c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* ─── Base ──────────────────────────────────────────────────────────────────── */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-page);
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 1.5rem 0 3rem;
+  font-family: var(--font-geist, system-ui, sans-serif);
 }
+
+/* ─── DSEG7 LCD display ─────────────────────────────────────────────────────── */
+
+.dseg {
+  font-family: 'DSEG7Classic', 'Courier New', monospace;
+  letter-spacing: 0.04em;
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+/* Ghost + active overlay pattern */
+.lcd-layer {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+}
+
+.lcd-ghost {
+  /* Inline — its natural width determines the .lcd-layer container width */
+  font-family: 'DSEG7Classic', 'Courier New', monospace;
+  color: var(--lcd-inactive);
+  -webkit-font-smoothing: none;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: 0.04em;
+}
+
+.lcd-val {
+  position: absolute;
+  inset: 0;
+  font-family: 'DSEG7Classic', 'Courier New', monospace;
+  color: var(--lcd-active);
+  text-shadow: 0 0 12px var(--lcd-glow);
+  -webkit-font-smoothing: none;
+  letter-spacing: 0.04em;
+  text-align: right;
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
+
+.btn-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: transform 55ms ease, box-shadow 55ms ease;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  outline: none;
+}
+
+.btn-key:focus-visible {
+  outline: 2px solid var(--lcd-active);
+  outline-offset: 2px;
+}
+
+.btn-n {
+  background: var(--btn-n-face);
+  color: var(--btn-n-text);
+  box-shadow:
+    inset 0 1px 0 var(--btn-n-hi),
+    inset -1px 0 0 var(--btn-n-hi),
+    inset 0 -1px 0 var(--btn-n-lo),
+    0 4px 0 var(--btn-n-lo),
+    0 5px 8px rgba(0,0,0,0.45);
+}
+
+.btn-o {
+  background: var(--btn-o-face);
+  color: var(--btn-o-text);
+  box-shadow:
+    inset 0 1px 0 var(--btn-o-hi),
+    inset -1px 0 0 var(--btn-o-hi),
+    inset 0 -1px 0 var(--btn-o-lo),
+    0 4px 0 var(--btn-o-lo),
+    0 5px 8px rgba(0,0,0,0.45);
+}
+
+.btn-e {
+  background: var(--btn-e-face);
+  color: var(--btn-e-text);
+  box-shadow:
+    inset 0 1px 0 var(--btn-e-hi),
+    inset -1px 0 0 var(--btn-e-hi),
+    inset 0 -1px 0 var(--btn-e-lo),
+    0 4px 0 var(--btn-e-lo),
+    0 5px 8px rgba(0,0,0,0.5);
+}
+
+.btn-d {
+  background: var(--btn-d-face);
+  color: var(--btn-d-text);
+  box-shadow:
+    inset 0 1px 0 var(--btn-d-hi),
+    inset -1px 0 0 var(--btn-d-hi),
+    inset 0 -1px 0 var(--btn-d-lo),
+    0 4px 0 var(--btn-d-lo),
+    0 5px 8px rgba(0,0,0,0.45);
+}
+
+/* Pressed / active state for ALL button types */
+.btn-key:active,
+.btn-key.is-pressed {
+  transform: translateY(3px) !important;
+}
+
+.btn-n:active, .btn-n.is-pressed {
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    0 1px 0 var(--btn-n-lo),
+    0 2px 3px rgba(0,0,0,0.3);
+}
+.btn-o:active, .btn-o.is-pressed {
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    0 1px 0 var(--btn-o-lo),
+    0 2px 3px rgba(0,0,0,0.3);
+}
+.btn-e:active, .btn-e.is-pressed {
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    0 1px 0 var(--btn-e-lo),
+    0 2px 3px rgba(0,0,0,0.3);
+}
+.btn-d:active, .btn-d.is-pressed {
+  box-shadow:
+    inset 0 2px 4px rgba(0,0,0,0.5),
+    0 1px 0 var(--btn-d-lo),
+    0 2px 3px rgba(0,0,0,0.3);
+}
+
+/* ─── Animations ─────────────────────────────────────────────────────────────── */
+
+@keyframes lcd-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.78; }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes pop-in {
+  from { transform: scale(0.92); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+.anim-urgent { animation: lcd-pulse 0.7s ease-in-out infinite; }
+.anim-blink  { animation: blink 0.6s step-end infinite; }
+.anim-slide  { animation: slide-up 0.3s ease-out forwards; }
+.anim-pop    { animation: pop-in 0.25s ease-out forwards; }
+
+/* ─── Utility ────────────────────────────────────────────────────────────────── */
+
+.no-scroll::-webkit-scrollbar { display: none; }
+.no-scroll { -ms-overflow-style: none; scrollbar-width: none; }
