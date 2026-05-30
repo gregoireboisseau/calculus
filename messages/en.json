@@ -32,5 +32,13 @@
     "hosting": "Hosting",
     "developer": "Developed by",
     "close": "Close"
+  },
+  "pwa": {
+    "bannerTitle": "Install Calculus",
+    "bannerSub": "Play offline from your home screen",
+    "install": "Install",
+    "later": "Later",
+    "iosBefore": "Tap",
+    "iosAfter": "then \"Add to Home Screen\""
   }
 }

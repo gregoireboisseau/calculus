@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { LangAttribute } from '@/components/LangAttribute';
 import { LegalModal } from '@/components/LegalModal';
+import { InstallBanner } from '@/components/InstallBanner';
 
 type Props = {
   children: React.ReactNode;
@@ -49,6 +50,7 @@ export default async function LocaleLayout({ children, params }: Props) {
             <LegalModal />
           </footer>
         </div>
+        <InstallBanner />
       </NextIntlClientProvider>
     </>
   );

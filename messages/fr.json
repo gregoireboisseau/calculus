@@ -32,5 +32,13 @@
     "hosting": "Hébergement",
     "developer": "Développé par",
     "close": "Fermer"
+  },
+  "pwa": {
+    "bannerTitle": "Installer Calculus",
+    "bannerSub": "Jouez hors-ligne depuis votre écran d'accueil",
+    "install": "Installer",
+    "later": "Plus tard",
+    "iosBefore": "Appuyez sur",
+    "iosAfter": "puis « Sur l'écran d'accueil »"
   }
 }
