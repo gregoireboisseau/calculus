@@ -3,8 +3,9 @@ const CACHE = 'calculus-v1';
 // Assets to cache on install
 const PRECACHE = [
   '/manifest.webmanifest',
-  '/icons/icon.svg',
-  '/icons/icon-maskable.svg',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  '/apple-touch-icon.png',
 ];
 
 self.addEventListener('install', (event) => {
@@ -34,6 +35,7 @@ self.addEventListener('fetch', (event) => {
   const isCacheFirst =
     url.pathname.startsWith('/_next/static/') ||
     url.pathname.startsWith('/icons/') ||
+    url.pathname === '/apple-touch-icon.png' ||
     url.pathname === '/manifest.webmanifest';
 
   // Cache-first: CDN fonts (jsDelivr)
