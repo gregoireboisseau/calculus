@@ -1,6 +1,7 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { Geist } from 'next/font/google';
+import { PwaRegistration } from '@/components/PwaRegistration';
 import './globals.css';
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' });
@@ -20,6 +21,30 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
   },
+  appleWebApp: {
+    capable: true,
+    title: 'Calculus',
+    statusBarStyle: 'default',
+  },
+  icons: {
+    icon: [
+      { url: '/icons/icon-48.png', sizes: '48x48', type: 'image/png' },
+      { url: '/icons/icon-96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: '/apple-touch-icon.png',
+  },
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#cec8b6' },
+    { media: '(prefers-color-scheme: dark)', color: '#202020' },
+  ],
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -35,6 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body className="antialiased">
         {children}
+        <PwaRegistration />
       </body>
     </html>
   );
